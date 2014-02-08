@@ -1,13 +1,13 @@
 //
-//  ViewController.h
+//  PickerCell.h
 //  CBBClient
 //
-//  Created by 卡宝宝 on 13-9-17.
+//  Created by 卡宝宝 on 13-9-18.
 //  Copyright (c) 2013年 EasyCard. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface PickerCell : UITableViewCell
 
 @end
