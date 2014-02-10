@@ -80,6 +80,8 @@
 		36780913187165B0006D38AE /* PARSEyhinfolistmobile4.m in Sources */ = {isa = PBXBuildFile; fileRef = 36780912187165B0006D38AE /* PARSEyhinfolistmobile4.m */; };
 		36780917187167E1006D38AE /* CustomPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 36780916187167E1006D38AE /* CustomPicker.m */; };
 		368B3AE01883CF6100384799 /* FindPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368B3ADF1883CF6100384799 /* FindPwdViewController.m */; };
+		3695BAE818A619EC00B71BD1 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3695BAE718A619EC00B71BD1 /* UserViewController.m */; };
+		3695BAEB18A62C8A00B71BD1 /* PARSEuserlogin18.m in Sources */ = {isa = PBXBuildFile; fileRef = 3695BAEA18A62C8A00B71BD1 /* PARSEuserlogin18.m */; };
 		36DFC7CC187FC6AF0053DCCD /* PARSEuserlogin17.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DFC7CB187FC6AF0053DCCD /* PARSEuserlogin17.m */; };
 /* End PBXBuildFile section */
 
@@ -205,6 +207,10 @@
 		36780916187167E1006D38AE /* CustomPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPicker.m; sourceTree = "<group>"; };
 		368B3ADE1883CF6100384799 /* FindPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindPwdViewController.h; sourceTree = "<group>"; };
 		368B3ADF1883CF6100384799 /* FindPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindPwdViewController.m; sourceTree = "<group>"; };
+		3695BAE618A619EC00B71BD1 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
+		3695BAE718A619EC00B71BD1 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
+		3695BAE918A62C8A00B71BD1 /* PARSEuserlogin18.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PARSEuserlogin18.h; sourceTree = "<group>"; };
+		3695BAEA18A62C8A00B71BD1 /* PARSEuserlogin18.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PARSEuserlogin18.m; sourceTree = "<group>"; };
 		36DFC7CA187FC6AF0053DCCD /* PARSEuserlogin17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PARSEuserlogin17.h; sourceTree = "<group>"; };
 		36DFC7CB187FC6AF0053DCCD /* PARSEuserlogin17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PARSEuserlogin17.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -268,6 +274,8 @@
 				368B3ADF1883CF6100384799 /* FindPwdViewController.m */,
 				360562CF188E4C9700FE2483 /* UserEditViewController.h */,
 				360562D0188E4C9800FE2483 /* UserEditViewController.m */,
+				3695BAE618A619EC00B71BD1 /* UserViewController.h */,
+				3695BAE718A619EC00B71BD1 /* UserViewController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -497,6 +505,8 @@
 				36020E1D1875179800935035 /* PARSEuserlogin1.m */,
 				36DFC7CA187FC6AF0053DCCD /* PARSEuserlogin17.h */,
 				36DFC7CB187FC6AF0053DCCD /* PARSEuserlogin17.m */,
+				3695BAE918A62C8A00B71BD1 /* PARSEuserlogin18.h */,
+				3695BAEA18A62C8A00B71BD1 /* PARSEuserlogin18.m */,
 			);
 			path = Parser;
 			sourceTree = "<group>";
@@ -631,6 +641,7 @@
 				3667B39317E84A56009003C3 /* ASIDownloadCache.m in Sources */,
 				3667B39417E84A56009003C3 /* ASIFormDataRequest.m in Sources */,
 				3649EB5818711A470078F9F0 /* MoreViewController.m in Sources */,
+				3695BAEB18A62C8A00B71BD1 /* PARSEuserlogin18.m in Sources */,
 				3667B39517E84A56009003C3 /* ASIHTTPRequest.m in Sources */,
 				3667B39617E84A56009003C3 /* ASIInputStream.m in Sources */,
 				3667B39717E84A56009003C3 /* ASINetworkQueue.m in Sources */,
@@ -655,6 +666,7 @@
 				36711ED717E9A7C400A81F4E /* TextCell.m in Sources */,
 				363DCC16187E533A0024111D /* RegistViewController.m in Sources */,
 				36711EDA17E9A85800A81F4E /* SingleControlCell.m in Sources */,
+				3695BAE818A619EC00B71BD1 /* UserViewController.m in Sources */,
 				3649EB5718711A470078F9F0 /* CityViewController.m in Sources */,
 				368B3AE01883CF6100384799 /* FindPwdViewController.m in Sources */,
 				36711EDD17E9A96E00A81F4E /* RegCardViewController.m in Sources */,

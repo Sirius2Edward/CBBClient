@@ -7,96 +7,225 @@
 //
 
 #import "UserEditViewController.h"
+#import "Request_API.h"
 
 @interface UserEditViewController ()
-
+{
+    Request_API *req;
+    NSDictionary *works;
+    NSDictionary *prov;
+    NSDictionary *city;
+    NSArray *provArr;
+    NSArray *cityArr;
+    CustomPicker *picker;
+    UIBarButtonItem *prev;
+    UIBarButtonItem *next;
+}
 @end
 
 @implementation UserEditViewController
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    req.delegate = self;
+}
+
 - (void)loadView
 {
     [super loadView];
+    req = [Request_API shareInstance];
+    ((UIScrollView *)self.view).contentSize = CGSizeMake(320, SCREEN_HEIGHT+216);
+    
+    self.birth.delegate = self;
+    self.work.delegate = self;
+    self.address.delegate = self;
+    
     self.sex.segmentedControlStyle = UISegmentedControlStyleBar;
     
-    NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:3];
+    NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:5];
     
-    UIBarButtonItem *prev = [[UIBarButtonItem alloc] initWithTitle:@"上一项" style:UIBarButtonItemStyleDone target:self action:@selector(confirmPicker)];
-    prev.enabled = NO;
-    UIBarButtonItem *next = [[UIBarButtonItem alloc] initWithTitle:@"下一项" style:UIBarButtonItemStyleDone target:self action:@selector(confirmPicker)];
-    UIBarButtonItem *confirmBtn = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStyleDone target:self action:@selector(confirmPicker)];
+    prev = [[UIBarButtonItem alloc] initWithTitle:@"上一项" style:UIBarButtonItemStyleDone target:self action:@selector(toPrev)];
+    next = [[UIBarButtonItem alloc] initWithTitle:@"下一项" style:UIBarButtonItemStyleDone target:self action:@selector(toNext)];
+    UIBarButtonItem *confirmBtn = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStyleDone target:self action:@selector(confirmAction:WithInfo:)];
     UIBarButtonItem *flexibleSpaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     [items addObject:prev];
     [items addObject:next];
     [items addObject:flexibleSpaceItem];
     [items addObject:confirmBtn];
-    UIToolbar *toobar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, -44, 320, 44)];
-    toobar.items = items;
-    self.birth.inputAccessoryView = toobar;
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    toolbar.barStyle = UIBarStyleBlackTranslucent;
+    toolbar.items = items;
+    self.birth.inputAccessoryView = toolbar;
+    self.work.inputAccessoryView = toolbar;
+    self.address.inputAccessoryView = toolbar;
     
-    UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, 320, 260)];
+    UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, 320, 216)];
     datePicker.datePickerMode = UIDatePickerModeDate;
     [datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
     self.birth.inputView = datePicker;
-
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
--(IBAction)selectWork:(UIButton *)sender
-{
     
-}
-
--(IBAction)selectAddr:(UIButton *)sender
-{
     
-}
+    picker = [[CustomPicker alloc] initWithFrame:CGRectMake(0, 0, 320, 216) withToolbar:toolbar];
+    picker.delegate = self;
+    self.address.inputView = picker;
+    self.work.inputView = picker;
 
--(void)confirmPicker
-{
-    [self.view endEditing:YES];
 }
 
 -(void)dateChanged:(UIDatePicker *)sender
 {
-    self.birth.text = [NSString stringWithFormat:@"%@", sender.date];
+    NSDateComponents *component = [[NSCalendar currentCalendar] components:NSDayCalendarUnit|NSMonthCalendarUnit|NSYearCalendarUnit fromDate:sender.date];
+    self.birth.text = [NSString stringWithFormat:@"%d年 %d月 %d日", component.year,component.month,component.day];
 }
 
-//-(void)showDataPicker
-//{
-//    UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, 320, 260)];
-//    datePicker.datePickerMode = UIDatePickerModeDate;
-//        
-//    NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:3];
-//    UIBarButtonItem *confirmBtn = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStyleDone target:self action:@selector(confirmPicker)];
-//    UIBarButtonItem *flexibleSpaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-//    [items addObject:flexibleSpaceItem];
-//    [items addObject:confirmBtn];
-//    UIToolbar *toobar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, -44, 320, 44)];
-//    toobar.items = items;
-//    
-//    [datePicker addSubview:toobar];
-//    
-//    [self.view addSubview:datePicker];
-//    [UIView animateWithDuration:0.3 animations:^{
-//        datePicker.frame = CGRectMake(0, SCREEN_HEIGHT-260, 320, 260);
-//    } completion:^(BOOL finished) {
-//        
-//    }];
-//}
+-(void)toPrev
+{
+    if ([self.work isFirstResponder]) {
+        [self.birth becomeFirstResponder];
+    }
+    else if ([self.address isFirstResponder]) {
+        [self.work becomeFirstResponder];
+    }
+}
 
--(void)cancelDataPicker
+-(void)toNext
+{
+    if ([self.birth isFirstResponder]) {
+        [self.work becomeFirstResponder];
+    }
+    else if ([self.work isFirstResponder]) {
+        [self.address becomeFirstResponder];
+    }
+}
+#pragma mark - delegate
+-(void)confirmAction:(NSArray *)values WithInfo:(NSDictionary *)info
+{
+    [self.view endEditing:YES];
+}
+
+-(void)selectAction:(NSArray *)values
+{
+    NSMutableArray *mArr = [NSMutableArray array];
+    if ([self.work isFirstResponder]) {
+        self.work.text = [values objectAtIndex:0];
+    }
+    else if([self.address isFirstResponder]) {
+        for (NSString *str in values) {
+            NSArray *arr = [str componentsSeparatedByString:@" "];
+            [mArr addObject:[arr objectAtIndex:arr.count-1]];
+        }
+        self.address.text = [mArr componentsJoinedByString:@" - "];
+    }
+}
+
+-(void)reloadCityData:(CustomPicker *)picker prov:(NSString *)key
+{
+    [req getCityList:[prov objectForKey:key]];
+}
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if (textField == self.birth) {
+        prev.enabled = NO;
+        next.enabled = YES;
+    }
+    else if (textField == self.work) {
+        if (!works) {
+            [req getWorkList];
+            return NO;
+        }
+    }
+    else if (textField == self.address) {
+        if (nil == prov && nil == city) {
+            [req getProvinceList];
+            return NO;
+        }
+    }
+    return YES;
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField == self.work) {
+        prev.enabled = YES;
+        next.enabled = YES;
+        picker.provArr = [works allKeys];
+        picker.cityArr = nil;
+        [picker reloadComponent:0];
+    }
+    else if (textField == self.address) {
+        prev.enabled = YES;
+        next.enabled = NO;
+        picker.provArr = provArr;
+        picker.cityArr = cityArr;
+        [picker reloadComponent:0];
+    }
+    CGRect rect = self.view.frame;
+    rect.size.height -= 216;
+    [UIView animateWithDuration:0.2f animations:^{
+        self.view.frame = rect;
+    }];
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    CGRect rect = self.view.frame;
+    rect.size.height += 216;
+    [UIView animateWithDuration:0.20f animations:^{
+        self.view.frame = rect;
+    }];
+}
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
     
+}
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView
+{
+    
+}
+#pragma mark - request end
+-(void)getWorkEnd:(id)mDic
+{
+    NSDictionary *dic = [[mDic objectForKey:@"PARSEuserlogin18"] objectForKey:@"WorkList" ];
+    works = dic;
+    picker.provArr = [dic allKeys];
+    picker.cityArr = nil;
+    [picker reloadComponent:0];
+    [self.work becomeFirstResponder];
+}
+
+-(void)getProvEnd:(id)mDic
+{
+    NSDictionary *dic = [[mDic objectForKey:@"PARSEyhinfolistmobile3"] objectForKey:@"ProvList" ];
+    prov = dic;
+    NSArray *keyArray = [dic allKeys];
+    provArr = [keyArray sortedArrayUsingComparator:^NSComparisonResult(NSString *obj1, NSString *obj2) {
+        if ([obj1 characterAtIndex:0] < [obj2 characterAtIndex:0]) {
+            return NSOrderedAscending;
+        }
+        return NSOrderedDescending;
+    }];
+    picker.provArr = provArr;
+    if (nil == city) {
+        [req getCityList:[prov objectForKey:[provArr objectAtIndex:0]]];
+    }
+}
+
+-(void)getCityEnd:(id)mDic
+{
+    NSDictionary *dic = [[mDic objectForKey:@"PARSEyhinfolistmobile4"] objectForKey:@"CityList" ];
+    city = dic;
+    NSArray *keyArray = [dic allKeys];
+    cityArr = [keyArray sortedArrayUsingComparator:^NSComparisonResult(NSString *obj1, NSString *obj2) {
+        if ([obj1 characterAtIndex:0] < [obj2 characterAtIndex:0]) {
+            return NSOrderedAscending;
+        }
+        return NSOrderedDescending;
+    }];
+    picker.cityDic = city;
+    [picker reloadComponent:1];
+    [self.address becomeFirstResponder];
 }
 @end

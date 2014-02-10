@@ -11,7 +11,6 @@
 @implementation CustomPicker
 {
     UIPickerView *picker;
-    UIToolbar *toolBar;
     NSDictionary *_data;
 }
 @synthesize isShow;
@@ -22,27 +21,32 @@
 @synthesize selectItem;
 @synthesize userInfo;
 @synthesize delegate;
--(id)initWithFrame:(CGRect)frame
+-(id)initWithFrame:(CGRect)frame withToolbar:(UIToolbar *)toolBar
 {
     if (self = [super initWithFrame:frame]) {
         self.isShow = NO;
         self.selectItem = [NSMutableArray array];
+        
+        CGRect rect;
         //创建工具栏
-        NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:3];
-        UIBarButtonItem *confirmBtn = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStyleDone target:self action:@selector(confirmPicker)];
-        UIBarButtonItem *flexibleSpaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-        [items addObject:flexibleSpaceItem];
-        [items addObject:confirmBtn];        
         if (toolBar==nil) {
             toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+            NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:2];
+            UIBarButtonItem *confirmBtn = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStyleDone target:self action:@selector(confirmPicker)];
+            UIBarButtonItem *flexibleSpaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+            [items addObject:flexibleSpaceItem];
+            [items addObject:confirmBtn];
+            toolBar.hidden = NO;
+            toolBar.items = items;
+            toolBar.barStyle = UIBarStyleBlackTranslucent;
+            [self addSubview:toolBar];
+            rect = CGRectMake(0, 44, 320, 216);
         }
-        toolBar.hidden = NO;
-        toolBar.barStyle = UIBarStyleBlackTranslucent;
-        toolBar.items = items;
-        items = nil;
-        [self addSubview:toolBar];
+        else {
+            rect = CGRectMake(0, 0, 320, 216);
+        }
         
-        picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 44, 320, 216)];
+        picker = [[UIPickerView alloc] initWithFrame:rect];
         picker.delegate = self;
         picker.showsSelectionIndicator = YES;
         [self addSubview:picker];
@@ -204,7 +208,7 @@
 
 -(void)reloadComponent:(NSInteger)component
 {
-    [picker reloadComponent:component];
+    [picker reloadAllComponents];
     if (component==1) {
         if (self.selectItem.count == component) {
             [self.selectItem addObject:[self.cityArr objectAtIndex:[picker selectedRowInComponent:1]]];
@@ -212,7 +216,7 @@
         else {
             [self.selectItem replaceObjectAtIndex:1 withObject:[self.cityArr objectAtIndex:[picker selectedRowInComponent:1]]];
         }
-    }
-    [self.delegate selectAction:self.selectItem];
+        [self.delegate selectAction:self.selectItem];
+    }    
 }
 @end

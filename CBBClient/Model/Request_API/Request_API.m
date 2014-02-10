@@ -66,6 +66,12 @@
     [req httpRequestWithAPI:LOGIN TypeID:38 Dictionary:dic];
 }
 
+-(void)getWorkList
+{
+    req.connectEnd = @selector(getWorkEnd:);
+    [req httpRequestWithAPI:LOGIN TypeID:18 Dictionary:Nil];
+}
+
 -(void)editUser:(NSInteger)sex birth:(NSString *)date work:(NSString *)work address:(NSString *)add press:(NSString *)pres
 {
     NSDictionary *dic = [NSDictionary dictionary];

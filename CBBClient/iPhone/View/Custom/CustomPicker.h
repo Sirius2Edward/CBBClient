@@ -25,6 +25,7 @@
 @property(nonatomic,retain)NSMutableArray *selectItem;
 @property(nonatomic,retain)NSDictionary *userInfo;
 @property(nonatomic,assign)id<CustomPickerDelegate> delegate;
+- (id)initWithFrame:(CGRect)frame withToolbar:(UIToolbar *)toolBar;
 - (void)showPickerInView:(UIView *)view;
 - (void)cancelPicker;
 - (void)reloadComponent:(NSInteger)component;

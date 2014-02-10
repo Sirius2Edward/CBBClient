@@ -65,6 +65,7 @@
 {
     //配置URL参数
     //选择基本URL
+    [self.queue cancelAllOperations];
     self.apiName = api;
     self.apiType = [NSString stringWithFormat:@"%d",typeID];
     NSString *prefixURL = STATE ? @"http://www.cardbaobao.com/cbbjk/":@"http://test.cardbaobao.com/cbbjk/";

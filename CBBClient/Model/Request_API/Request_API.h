@@ -24,6 +24,7 @@
 -(void)loginWithUser:(NSString *)username password:(NSString *)password;
 -(void)registMember:(NSInteger)type account:(NSString *)emailmobile username:(NSString *)username password:(NSString *)password confirm:(NSString *)passwords;
 -(void)findPwd:(NSInteger)type account:(NSString *)emailmobile;
+-(void)getWorkList;
 -(void)editUser:(NSInteger)sex birth:(NSString *)date work:(NSString *)work address:(NSString *)add press:(NSString *)pres;
 //银行信息列表
 -(void)getProvinceList;

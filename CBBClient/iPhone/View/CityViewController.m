@@ -86,7 +86,7 @@
     if (picker) {
         [picker removeFromSuperview];
     }
-    picker = [[CustomPicker alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-260, 320, 260)];
+    picker = [[CustomPicker alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-260, 320, 260) withToolbar:nil];
     picker.provArr = provArr;
     picker.cityArr = cityArr;
     picker.delegate = self;
