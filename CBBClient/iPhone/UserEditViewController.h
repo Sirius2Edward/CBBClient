@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CustomPicker.h"
 @interface UserEditViewController : UIViewController<CustomPickerDelegate,UITextFieldDelegate,UITextViewDelegate>
+@property(nonatomic,retain)IBOutlet UIScrollView *scrollView;
 @property(nonatomic,retain)IBOutlet UILabel *account;
 @property(nonatomic,retain)IBOutlet UILabel *username;
 @property(nonatomic,retain)IBOutlet UISegmentedControl *sex;

@@ -217,6 +217,6 @@
             [self.selectItem replaceObjectAtIndex:1 withObject:[self.cityArr objectAtIndex:[picker selectedRowInComponent:1]]];
         }
         [self.delegate selectAction:self.selectItem];
-    }    
+    }
 }
 @end

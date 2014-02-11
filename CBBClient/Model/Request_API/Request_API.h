@@ -11,7 +11,7 @@
 
 #define YHINFO @"yhinfolistmobile"
 #define LOGIN @"userlogin"
-
+#define REGCARD @"regcard"
 
 @interface Request_API : NSObject
 {
@@ -29,4 +29,9 @@
 //银行信息列表
 -(void)getProvinceList;
 -(void)getCityList:(NSString *)cityid;
+//信用卡注册
+-(void)getCardProvincesAndCities;
+-(void)getCardBandsAndDistrics:(NSString *)cityID;
+-(void)getCardsInCity:(NSString *)cityID bank:(NSString *)bankID;
+-(void)getCardJobs;
 @end

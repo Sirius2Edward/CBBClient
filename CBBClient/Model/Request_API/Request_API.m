@@ -93,4 +93,25 @@
     req.connectEnd = @selector(getCityEnd:);
     [req httpRequestWithAPI:YHINFO TypeID:4 Dictionary:[NSDictionary dictionaryWithObject:cityid forKey:@"sheng"]];
 }
+
+//信用卡申请
+-(void)getCardProvincesAndCities
+{
+    [req httpRequestWithAPI:REGCARD TypeID:1 Dictionary:Nil];
+}
+
+-(void)getCardBandsAndDistrics:(NSString *)cityID
+{
+    [req httpRequestWithAPI:REGCARD TypeID:3 Dictionary:Nil];
+}
+
+-(void)getCardsInCity:(NSString *)cityID bank:(NSString *)bankID
+{
+    [req httpRequestWithAPI:REGCARD TypeID:4 Dictionary:Nil];
+}
+
+-(void)getCardJobs
+{
+    [req httpRequestWithAPI:REGCARD TypeID:6 Dictionary:Nil];
+}
 @end

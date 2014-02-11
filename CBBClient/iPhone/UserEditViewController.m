@@ -8,6 +8,7 @@
 
 #import "UserEditViewController.h"
 #import "Request_API.h"
+#import "UIColor+TitleColor.h"
 
 @interface UserEditViewController ()
 {
@@ -25,21 +26,22 @@
 
 @implementation UserEditViewController
 
--(void)viewWillAppear:(BOOL)animated
+-(void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
     req.delegate = self;
+    self.scrollView.contentSize = self.scrollView.frame.size;
 }
 
 - (void)loadView
 {
     [super loadView];
     req = [Request_API shareInstance];
-    ((UIScrollView *)self.view).contentSize = CGSizeMake(320, SCREEN_HEIGHT+216);
+
     
     self.birth.delegate = self;
     self.work.delegate = self;
     self.address.delegate = self;
+    self.present.delegate = self;
     
     self.sex.segmentedControlStyle = UISegmentedControlStyleBar;
     
@@ -59,18 +61,21 @@
     self.birth.inputAccessoryView = toolbar;
     self.work.inputAccessoryView = toolbar;
     self.address.inputAccessoryView = toolbar;
+    self.present.inputAccessoryView = toolbar;
     
     UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, 320, 216)];
     datePicker.datePickerMode = UIDatePickerModeDate;
     [datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
     self.birth.inputView = datePicker;
     
-    
     picker = [[CustomPicker alloc] initWithFrame:CGRectMake(0, 0, 320, 216) withToolbar:toolbar];
     picker.delegate = self;
     self.address.inputView = picker;
     self.work.inputView = picker;
 
+    self.present.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.present.layer.borderWidth = 1.5;
+    self.present.layer.cornerRadius = 6.0;
 }
 
 -(void)dateChanged:(UIDatePicker *)sender
@@ -87,6 +92,9 @@
     else if ([self.address isFirstResponder]) {
         [self.work becomeFirstResponder];
     }
+    else if ([self.present isFirstResponder]) {
+        [self.address becomeFirstResponder];
+    }
 }
 
 -(void)toNext
@@ -96,6 +104,9 @@
     }
     else if ([self.work isFirstResponder]) {
         [self.address becomeFirstResponder];
+    }
+    else if ([self.address isFirstResponder]) {
+        [self.present becomeFirstResponder];
     }
 }
 #pragma mark - delegate
@@ -145,6 +156,21 @@
     return YES;
 }
 
+-(void)setScrollRect
+{
+    CGSize size = self.scrollView.contentSize;
+    if (size.height == SCREEN_HEIGHT - 64) {
+        size.height += 218;
+    }
+    else {
+        size.height -= 218;
+    }
+    [UIView animateWithDuration:0.2f animations:^{
+        self.scrollView.contentSize = size;
+    }];
+}
+
+
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     if (textField == self.work) {
@@ -156,33 +182,34 @@
     }
     else if (textField == self.address) {
         prev.enabled = YES;
-        next.enabled = NO;
+        next.enabled = YES;
         picker.provArr = provArr;
         picker.cityArr = cityArr;
         [picker reloadComponent:0];
     }
-    CGRect rect = self.view.frame;
-    rect.size.height -= 216;
-    [UIView animateWithDuration:0.2f animations:^{
-        self.view.frame = rect;
-    }];
+    
+    [self setScrollRect];
+    [self.scrollView setContentOffset:CGPointMake(0, textField.frame.origin.y-30) animated:YES];
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    CGRect rect = self.view.frame;
-    rect.size.height += 216;
-    [UIView animateWithDuration:0.20f animations:^{
-        self.view.frame = rect;
-    }];
+    [self setScrollRect];
 }
 
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+- (void)textViewDidBeginEditing:(UITextView *)textView
 {
-    
+    textView.layer.borderColor = [UIColor titleColor].CGColor;
+    prev.enabled = YES;
+    next.enabled = NO;
+    [self setScrollRect];
+    NSLog(@"%@",NSStringFromCGPoint(textView.frame.origin));
+    [self.scrollView setContentOffset:CGPointMake(0, textView.frame.origin.y-30) animated:YES];
 }
-- (BOOL)textViewShouldEndEditing:(UITextView *)textView
+- (void)textViewDidEndEditing:(UITextView *)textView
 {
+    textView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    [self setScrollRect];
     
 }
 #pragma mark - request end
@@ -225,7 +252,7 @@
         return NSOrderedDescending;
     }];
     picker.cityDic = city;
-    [picker reloadComponent:1];
     [self.address becomeFirstResponder];
+    [picker reloadComponent:1];
 }
 @end
