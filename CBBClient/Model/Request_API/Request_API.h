@@ -34,4 +34,5 @@
 -(void)getCardBandsAndDistrics:(NSString *)cityID;
 -(void)getCardsInCity:(NSString *)cityID bank:(NSString *)bankID;
 -(void)getCardJobs;
+//-(void)regCardWith
 @end

@@ -30,13 +30,15 @@
 {
     req.delegate = self;
     self.scrollView.contentSize = self.scrollView.frame.size;
+    
 }
 
 - (void)loadView
 {
     [super loadView];
+    [self setHidesBottomBarWhenPushed:NO];
+    
     req = [Request_API shareInstance];
-
     
     self.birth.delegate = self;
     self.work.delegate = self;

@@ -19,6 +19,7 @@
 		363DCC21187E75ED0024111D /* NSString+Validate.m in Sources */ = {isa = PBXBuildFile; fileRef = 363DCC1B187E75ED0024111D /* NSString+Validate.m */; };
 		363DCC22187E75ED0024111D /* UIColor+TitleColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 363DCC1D187E75ED0024111D /* UIColor+TitleColor.m */; };
 		363DCC23187E75ED0024111D /* UILabel+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 363DCC1F187E75ED0024111D /* UILabel+Add.m */; };
+		3646D72118AB5103006B39F9 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3646D72018AB5103006B39F9 /* HomeViewController.m */; };
 		3649EB5D18711AD90078F9F0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3649EB5C18711AD90078F9F0 /* CoreLocation.framework */; };
 		3649EB5F18711AE50078F9F0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3649EB5E18711AE50078F9F0 /* MapKit.framework */; };
 		3649EB6218711B750078F9F0 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 3649EB6118711B750078F9F0 /* Location.m */; };
@@ -69,10 +70,6 @@
 		36780913187165B0006D38AE /* PARSEyhinfolistmobile4.m in Sources */ = {isa = PBXBuildFile; fileRef = 36780912187165B0006D38AE /* PARSEyhinfolistmobile4.m */; };
 		3695BAEB18A62C8A00B71BD1 /* PARSEuserlogin18.m in Sources */ = {isa = PBXBuildFile; fileRef = 3695BAEA18A62C8A00B71BD1 /* PARSEuserlogin18.m */; };
 		36DFC7CC187FC6AF0053DCCD /* PARSEuserlogin17.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DFC7CB187FC6AF0053DCCD /* PARSEuserlogin17.m */; };
-		36F5A75018AA143200444F2D /* PickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F5A73318AA143200444F2D /* PickerCell.m */; };
-		36F5A75118AA143200444F2D /* SelectorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F5A73518AA143200444F2D /* SelectorCell.m */; };
-		36F5A75218AA143200444F2D /* SingleControlCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F5A73718AA143200444F2D /* SingleControlCell.m */; };
-		36F5A75318AA143200444F2D /* TextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F5A73918AA143200444F2D /* TextCell.m */; };
 		36F5A75418AA143200444F2D /* CityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F5A73B18AA143200444F2D /* CityViewController.m */; };
 		36F5A75518AA143200444F2D /* CustomPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F5A73E18AA143200444F2D /* CustomPicker.m */; };
 		36F5A75618AA143200444F2D /* FindPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F5A74018AA143200444F2D /* FindPwdViewController.m */; };
@@ -104,6 +101,8 @@
 		363DCC1D187E75ED0024111D /* UIColor+TitleColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+TitleColor.m"; sourceTree = "<group>"; };
 		363DCC1E187E75ED0024111D /* UILabel+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Add.h"; sourceTree = "<group>"; };
 		363DCC1F187E75ED0024111D /* UILabel+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Add.m"; sourceTree = "<group>"; };
+		3646D71F18AB5103006B39F9 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		3646D72018AB5103006B39F9 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		3649EB5C18711AD90078F9F0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3649EB5E18711AE50078F9F0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3649EB6018711B750078F9F0 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
@@ -185,14 +184,6 @@
 		3695BAEA18A62C8A00B71BD1 /* PARSEuserlogin18.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PARSEuserlogin18.m; sourceTree = "<group>"; };
 		36DFC7CA187FC6AF0053DCCD /* PARSEuserlogin17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PARSEuserlogin17.h; sourceTree = "<group>"; };
 		36DFC7CB187FC6AF0053DCCD /* PARSEuserlogin17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PARSEuserlogin17.m; sourceTree = "<group>"; };
-		36F5A73218AA143200444F2D /* PickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerCell.h; sourceTree = "<group>"; };
-		36F5A73318AA143200444F2D /* PickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerCell.m; sourceTree = "<group>"; };
-		36F5A73418AA143200444F2D /* SelectorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectorCell.h; sourceTree = "<group>"; };
-		36F5A73518AA143200444F2D /* SelectorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectorCell.m; sourceTree = "<group>"; };
-		36F5A73618AA143200444F2D /* SingleControlCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleControlCell.h; sourceTree = "<group>"; };
-		36F5A73718AA143200444F2D /* SingleControlCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleControlCell.m; sourceTree = "<group>"; };
-		36F5A73818AA143200444F2D /* TextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextCell.h; sourceTree = "<group>"; };
-		36F5A73918AA143200444F2D /* TextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextCell.m; sourceTree = "<group>"; };
 		36F5A73A18AA143200444F2D /* CityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityViewController.h; sourceTree = "<group>"; };
 		36F5A73B18AA143200444F2D /* CityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityViewController.m; sourceTree = "<group>"; };
 		36F5A73D18AA143200444F2D /* CustomPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPicker.h; sourceTree = "<group>"; };
@@ -240,8 +231,8 @@
 		3615EF4E17E84E6A00AC427B /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
-				36F5A73C18AA143200444F2D /* Custom */,
-				36F5A73118AA143200444F2D /* Cell */,
+				3646D71F18AB5103006B39F9 /* HomeViewController.h */,
+				3646D72018AB5103006B39F9 /* HomeViewController.m */,
 				36F5A73A18AA143200444F2D /* CityViewController.h */,
 				36F5A73B18AA143200444F2D /* CityViewController.m */,
 				36F5A73F18AA143200444F2D /* FindPwdViewController.h */,
@@ -260,6 +251,8 @@
 				36F5A74C18AA143200444F2D /* UserEditViewController.m */,
 				36F5A74D18AA143200444F2D /* UserViewController.h */,
 				36F5A74E18AA143200444F2D /* UserViewController.m */,
+				36F5A73C18AA143200444F2D /* Custom */,
+				36F5A73118AA143200444F2D /* Cell */,
 			);
 			path = iPhone;
 			sourceTree = "<group>";
@@ -510,14 +503,6 @@
 		36F5A73118AA143200444F2D /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				36F5A73218AA143200444F2D /* PickerCell.h */,
-				36F5A73318AA143200444F2D /* PickerCell.m */,
-				36F5A73418AA143200444F2D /* SelectorCell.h */,
-				36F5A73518AA143200444F2D /* SelectorCell.m */,
-				36F5A73618AA143200444F2D /* SingleControlCell.h */,
-				36F5A73718AA143200444F2D /* SingleControlCell.m */,
-				36F5A73818AA143200444F2D /* TextCell.h */,
-				36F5A73918AA143200444F2D /* TextCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -635,7 +620,6 @@
 				36F5A75618AA143200444F2D /* FindPwdViewController.m in Sources */,
 				3667B39317E84A56009003C3 /* ASIDownloadCache.m in Sources */,
 				3667B39417E84A56009003C3 /* ASIFormDataRequest.m in Sources */,
-				36F5A75118AA143200444F2D /* SelectorCell.m in Sources */,
 				3695BAEB18A62C8A00B71BD1 /* PARSEuserlogin18.m in Sources */,
 				3667B39517E84A56009003C3 /* ASIHTTPRequest.m in Sources */,
 				3667B39617E84A56009003C3 /* ASIInputStream.m in Sources */,
@@ -644,17 +628,16 @@
 				3678091018715B9A006D38AE /* Cache.m in Sources */,
 				36F5A75418AA143200444F2D /* CityViewController.m in Sources */,
 				3667B39817E84A56009003C3 /* GDataXMLNode.m in Sources */,
-				36F5A75318AA143200444F2D /* TextCell.m in Sources */,
 				3667B39917E84A56009003C3 /* Reachability.m in Sources */,
 				3649EB6218711B750078F9F0 /* Location.m in Sources */,
 				36F5A75A18AA143200444F2D /* RegistViewController.m in Sources */,
 				3667B39A17E84A56009003C3 /* EGORefreshTableFooterView.m in Sources */,
+				3646D72118AB5103006B39F9 /* HomeViewController.m in Sources */,
 				36F5A75D18AA143200444F2D /* UserViewController.m in Sources */,
 				3667B39B17E84A56009003C3 /* EGORefreshTableHeaderView.m in Sources */,
 				3667B3A517E84A56009003C3 /* SVProgressHUD.m in Sources */,
 				3667B3C817E84B96009003C3 /* BaseParser.m in Sources */,
 				36F5A75C18AA143200444F2D /* UserEditViewController.m in Sources */,
-				36F5A75018AA143200444F2D /* PickerCell.m in Sources */,
 				36020E1E1875179800935035 /* PARSEuserlogin1.m in Sources */,
 				3667B3C917E84B96009003C3 /* HTTP_Request.m in Sources */,
 				3667B3CA17E84B96009003C3 /* Request_API.m in Sources */,
@@ -662,7 +645,6 @@
 				36780913187165B0006D38AE /* PARSEyhinfolistmobile4.m in Sources */,
 				36F5A75718AA143200444F2D /* LoginViewController.m in Sources */,
 				36DFC7CC187FC6AF0053DCCD /* PARSEuserlogin17.m in Sources */,
-				36F5A75218AA143200444F2D /* SingleControlCell.m in Sources */,
 				3649EB6A1871240B0078F9F0 /* PARSEyhinfolistmobile3.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -18,7 +18,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setHidesBottomBarWhenPushed:YES];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -26,4 +26,11 @@
     [super didReceiveMemoryWarning];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    //Segue代理，Push时执行
+    //Push到的页面隐藏Tabbar，Pop回来时显示
+    UIViewController *controller = segue.destinationViewController;
+    controller.hidesBottomBarWhenPushed = YES;
+}
 @end
