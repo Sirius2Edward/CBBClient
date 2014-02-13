@@ -29,6 +29,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     req.delegate = self;
+    self.scrollView.frame = self.view.frame;
     self.scrollView.contentSize = self.scrollView.frame.size;
     
 }
@@ -161,11 +162,12 @@
 -(void)setScrollRect
 {
     CGSize size = self.scrollView.contentSize;
+    CGFloat delta = SCREEN_HEIGHT-self.present.frame.origin.y-self.present.frame.size.height;
     if (size.height == SCREEN_HEIGHT - 64) {
-        size.height += 218;
+        size.height += 218-delta;
     }
     else {
-        size.height -= 218;
+        size.height -= 218-delta;
     }
     [UIView animateWithDuration:0.2f animations:^{
         self.scrollView.contentSize = size;
@@ -191,6 +193,7 @@
     }
     
     [self setScrollRect];
+    
     [self.scrollView setContentOffset:CGPointMake(0, textField.frame.origin.y-30) animated:YES];
 }
 
